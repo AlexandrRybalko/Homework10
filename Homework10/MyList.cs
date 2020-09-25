@@ -63,17 +63,36 @@ namespace Homework10
                 {
                     if (element.Equals(this[i].Value))
                     {
+                        Remove(this[i]);
+                    }
+                }
+            }
+        }
+
+        public void Remove(Node node)
+        {
+            for (int i = 0; i < Count(); i++)
+            {
+                if (this[i].Equals(node))
+                {
+                    if(Count() <= 1)
+                    {
+                        Head = null;
+                    }
+                    else
+                    {
                         if(i == 0)
                         {
-                            Head = this[1];
-                            continue;
+                            Head = Head.Next;
                         }
-                        else if(i == (Count() - 1))
+                        else if(i == Count() - 1)
                         {
-                            this[Count() - 2].Next = null;
-                            continue;
+                            this[i - 1].Next = null;
                         }
-                        this[i - 1].Next = this[i + 1];
+                        else
+                        {
+                            this[i - 1].Next = this[i + 1];
+                        }
                     }
                 }
             }
