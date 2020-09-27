@@ -12,7 +12,7 @@ namespace Homework10
         {
             MyList<int> myList1 = new MyList<int>();
             myList1.Add(8);
-            myList1.Add(45);
+            myList1.Add(2);
             MyList<int> myList2 = new MyList<int>();
             myList2.Add(1);
             myList2.Add(2);
@@ -24,14 +24,27 @@ namespace Homework10
             myList2.Add(8);
             myList2.Add(9);
 
-            //Console.WriteLine(myList1.Count());
+            foreach (var a in myList1)
+            {
+                Console.WriteLine(a);
+            }
+
             foreach (var a in myList2)
             {
                 Console.WriteLine(a);
-                Console.WriteLine("=====================");
             }
-            myList2.Except(myList1);
-            foreach(var a in myList2)
+
+            myList2.Notify += myList1.Add;
+
+            myList2.Remove(1);
+            myList2.Remove(7);
+            myList2.Remove(5);
+
+            foreach (var a in myList1)
+            {
+                Console.WriteLine(a);
+            }
+            foreach (var a in myList2)
             {
                 Console.WriteLine(a);
             }

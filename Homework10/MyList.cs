@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Homework10
 {
     public class MyList<T> : IEnumerable
     {
+        public delegate void MyListHandler(T value);
+        public event MyListHandler Notify;
+
         private Node Head { get; set; }
 
         public IEnumerator GetEnumerator()
@@ -57,27 +55,28 @@ namespace Homework10
 
         public void Except(IEnumerable collection)
         {
-            foreach(var element in collection)
+            for (int i = 0; i < Count(); i++)
             {
-                for(int i = 0; i < Count(); i++)
+                foreach(var element in collection)
                 {
                     if (element.Equals(this[i].Value))
                     {
-                        Remove(this[i]);
+                        RemoveAll(this[i]);
                     }
                 }
             }
         }
 
-        public void Remove(Node node)
+        public void RemoveNode(Node node)
         {
             for (int i = 0; i < Count(); i++)
             {
-                if (this[i].Equals(node))
+                if (this[i].Value.Equals(node.Value))
                 {
-                    if(Count() <= 1)
+                    if(Count() == 1)
                     {
                         Head = null;
+                        break;
                     }
                     else
                     {
@@ -94,8 +93,71 @@ namespace Homework10
                             this[i - 1].Next = this[i + 1];
                         }
                     }
+                    break;
                 }
             }
+            Notify(node.Value);
+        }
+
+        public void RemoveAll(Node node)
+        {
+            for (int i = 0; i < Count(); i++)
+            {
+                if (this[i].Value.Equals(node.Value))
+                {
+                    if (Count() == 1)
+                    {
+                        Head = null;
+                        break;
+                    }
+                    else
+                    {
+                        if (i == 0)
+                        {
+                            Head = Head.Next;
+                        }
+                        else if (i == Count() - 1)
+                        {
+                            this[i - 1].Next = null;
+                        }
+                        else
+                        {
+                            this[i - 1].Next = this[i + 1];
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < Count(); i++)
+            {
+                if (this[i].Value.Equals(node.Value))
+                {
+                    if (Count() == 1)
+                    {
+                        Head = null;
+                        break;
+                    }
+                    else
+                    {
+                        if (i == 0)
+                        {
+                            Head = Head.Next;
+                        }
+                        else if (i == Count() - 1)
+                        {
+                            this[i - 1].Next = null;
+                        }
+                        else
+                        {
+                            this[i - 1].Next = this[i + 1];
+                        }
+                    }
+                }
+            }
+        }
+
+        public void Remove(T value)
+        {
+            RemoveNode(new Node(value));
         }
         
         public Node this[int i]
@@ -130,6 +192,7 @@ namespace Homework10
             {
                 Value = value;
             }
+
         }
 
     }
