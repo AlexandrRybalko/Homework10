@@ -34,6 +34,7 @@ namespace Homework10
             if(position < _myList.Count() - 1)
             {
                 position++;
+
                 return true;
             }
             else
