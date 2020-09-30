@@ -12,7 +12,10 @@ namespace Homework10
 
         public IEnumerator GetEnumerator()
         {
-            return new MyListEnumerator(this);
+            for(int i = 0; i < Count(); i++)
+            {
+                yield return this[i].Value;
+            }
         }
         public void Add(int value)
         {
