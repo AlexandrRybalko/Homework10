@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Homework10
 {
@@ -10,10 +6,10 @@ namespace Homework10
     {
         static void Main(string[] args)
         {
-            MyList<int> myList1 = new MyList<int>();
+            MyList myList1 = new MyList();
             myList1.Add(8);
             myList1.Add(2);
-            MyList<int> myList2 = new MyList<int>();
+            MyList myList2 = new MyList();
             myList2.Add(1);
             myList2.Add(2);
             myList2.Add(3);

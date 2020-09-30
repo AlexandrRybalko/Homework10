@@ -3,18 +3,18 @@ using System.Collections;
 
 namespace Homework10
 {
-    public class MyList<T> : IEnumerable
+    public class MyList : IEnumerable
     {
-        public delegate void MyListHandler(T value);
+        public delegate void MyListHandler(int value);
         public event MyListHandler Notify;
 
         private Node Head { get; set; }
 
         public IEnumerator GetEnumerator()
         {
-            return new MyListEnumerator<T>(this);
+            return new MyListEnumerator(this);
         }
-        public void Add(T value)
+        public void Add(int value)
         {
             if(Head == null)
             {
@@ -155,7 +155,7 @@ namespace Homework10
             }
         }
 
-        public void Remove(T value)
+        public void Remove(int value)
         {
             RemoveNode(new Node(value));
         }
@@ -185,10 +185,10 @@ namespace Homework10
 
         public class Node
         {
-            public T Value { get; set; }
+            public int Value { get; set; }
             public Node Next { get; set; }
 
-            public Node(T value)
+            public Node(int value)
             {
                 Value = value;
             }

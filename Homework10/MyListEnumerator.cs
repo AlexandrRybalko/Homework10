@@ -3,12 +3,12 @@ using System.Collections;
 
 namespace Homework10
 {
-    public class MyListEnumerator<T> : IEnumerator
+    public class MyListEnumerator : IEnumerator
     {
-        private MyList<T> _myList;
+        private MyList _myList;
         private int position;
 
-        public MyListEnumerator(MyList<T> myList)
+        public MyListEnumerator(MyList myList)
         {
             _myList = myList;
             position = -1;
